@@ -1,0 +1,120 @@
+import random
+
+
+def rolldice():
+    return random.randint(1,6)
+
+
+
+
+    
+def pig_game1(current_player):
+    player_scores = [0, 0]
+
+    while max(player_scores) < 100:
+        if current_player == 1:
+            print("Player 1 score:", player_scores[0])
+            print("Player 2 score:", player_scores[1])
+            print(f"It is player {current_player}'s turn.")
+            
+            turn_total = 0
+            roll = rolldice()
+
+            while roll != 1:
+                print("Roll:", roll)
+                turn_total += roll
+                print("Turn total:", turn_total, "\tRoll/Hold?")
+                user_input = input()
+                if user_input: # if user_input has anything
+                    break
+                else:
+                    roll = rolldice()
+            if roll == 1:
+                turn_total = 0
+                print("Roll:",roll,"\nTurn total: 0")
+                
+
+            player_scores[current_player -1] += turn_total #current_player -1 because current_player is 1 or 2, and player_score[0] represent player1 and player_score[1] represent player2
+            print("New score:", player_scores[current_player -1])
+            
+            current_player = 3 - current_player # switch player
+        else:
+            print("Player 1 score:", player_scores[0])
+            print("Player 2 score:", player_scores[1])
+            print(f"It is player {current_player}'s turn.")
+            turn_total = 0
+            for i in range(5):
+                roll = rolldice()
+                print("Roll:", roll)
+                if roll != 1:
+                    turn_total += roll
+                else:
+                    turn_total = 0
+                    break
+            print("Turn total:" ,turn_total)
+            player_scores[current_player -1] += turn_total #current_player -1 because current_player is 1 or 2, and player_score[0] represent player1 and player_score[1] represent player2
+            print("New score:", player_scores[current_player -1])       
+            current_player = 3 - current_player
+
+def pig_game2():
+    player_scores = [0, 0]
+    current_player == 1
+    while max(player_scores) < 100:
+        print("Player 1 score:", player_scores[0])
+        print("Player 2 score:", player_scores[1])
+        print("It is player 1's turn.")  # Adjusted to display correct player number
+
+        turn_total = 0  # Initialize turn_total here
+        for i in range(5):
+            roll = rolldice()
+            print("Roll:", roll)
+            if roll != 1:
+                turn_total += roll
+            else:
+                turn_total = 0
+                break
+        print("Turn total:" ,turn_total)
+        player_scores[0] += turn_total #current_player -1 because current_player is 1 or 2, and player_score[0] represent player1 and player_score[1] represent player2
+        print("New score:", player_scores[0])       
+        current_player == 2      
+
+        if current_player == 2:
+            print("Player 1 score:", player_scores[0])
+            print("Player 2 score:", player_scores[1])
+            print("It is player 2's turn.")  # Adjusted to display correct player number
+
+            turn_total = 0  # Initialize turn_total here
+            roll = rolldice()
+
+            while roll != 1:
+                print("Roll:", roll)
+                turn_total += roll
+                print("Turn total:", turn_total, "\tRoll/Hold?")
+                user_input = input()
+                if user_input:  # if user_input anything
+                    break
+                roll = rolldice()
+                if roll == 1:
+                    turn_total = 0
+                    print("Roll:", roll, "\nTurn total: 0")
+            player_scores[1] += turn_total  # current_player because it's already adjusted
+            print("New score:", player_scores[1])
+
+            current_player == 1 - current_player  # switch player
+            
+
+
+
+
+
+current_player = random.choice([1,2])
+if current_player ==1:
+    print(f"You will be player {current_player}")
+    print("Enter nothing to roll; enter anything to hold.")
+    pig_game1(current_player)
+
+elif current_player == 2:
+    print(f"You will be player {current_player}")
+    print("Enter nothing to roll; enter anything to hold.")
+    pig_game2()
+
